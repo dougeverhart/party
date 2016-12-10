@@ -1,0 +1,399 @@
+<html>
+<head>
+<style>
+input[type=text] {
+   border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+    font-family:"Times New Roman", Times, serif;
+  font-size:20px;
+}
+</style>
+
+</head>
+
+<script language="javascript">
+var newColor='yellow';
+var nextBox=1;
+var doRandom=-1;
+
+
+function handleSelect()
+{
+
+  document.getElementById('myid').style.backgroundColor = 'black';
+
+document.getElementById('slot1').src = 'Blank.png';
+document.getElementById('slot2').src = 'Blank.png';
+document.getElementById('slot3').src = 'Blank.png';
+document.getElementById('slot4').src = 'Blank.png';
+nextBox=1;
+doRandom=-1;
+
+}
+
+
+function changeText(id, newText)
+{
+
+document.getElementById(id).value = newText;
+<!--document.getElementById('colorButton').disabled = true;-->
+
+
+}
+
+function changeTextSimple(id, newText)
+{
+
+document.getElementById(id+nextBox).value = newText;
+nextBox=nextBox+1;
+if (nextBox==5) 
+{
+
+<!--document.getElementById('colorButton').disabled = false;-->
+nextBox=4;
+};
+
+
+
+}
+
+
+
+
+
+
+function changeTextSimpleI(id, newText)
+{
+if (nextBox==1)
+
+{
+switch (newText)
+{
+case '1':
+doRandom=1;
+break;
+
+case '2':
+doRandom=1;
+break;
+
+case '3':
+doRandom=1;
+break;
+
+case '4':
+doRandom=1;
+break;
+
+case '5':
+doRandom=1;
+break;
+
+case '6':
+doRandom=1;
+break;
+
+case '7':
+doRandom=0;
+break;
+
+case '8':
+doRandom=0;
+break;
+
+case '9':
+doRandom=0;
+break;
+
+
+}
+
+}
+
+
+switch (newText)
+{
+
+case '1':
+newText='One.png';
+
+break;
+case '2':
+newText='Two.png';
+break;
+case '3':
+newText='Three.png';
+break;
+
+case '4':
+newText='Four.png';
+break;
+case '5':
+newText='Five.png';
+break;
+case '6':
+newText='Six.png';
+break;
+
+case '7':
+newText='Seven.png';
+break;
+case '8':
+newText='Eight.png';
+break;
+case '9':
+newText='Nine.png';
+break;
+
+
+}
+
+
+
+document.getElementById('slot'+nextBox).src = newText;
+
+
+nextBox=nextBox+1;
+if (nextBox==5) 
+{
+<!--document.getElementById('colorButton').disabled = false;-->
+nextBox=4;
+
+document.getElementById('audiotag_beeps').play();
+
+changeColor2('myid', 50, document.getElementById('newSkill').value);
+
+};
+
+
+}
+
+function changeColor(id)
+{
+
+  document.getElementById(id).style.color = 'black'; // forecolor
+  document.getElementById(id).style.backgroundColor = document.getElementById('newSkill').value; // backcolor
+}
+
+function setColor(id, thecolor)
+{
+  document.getElementById(id).style.color = 'black'; // forecolor
+  document.getElementById(id).style.backgroundColor = thecolor; // backcolor
+
+}
+
+function pausecomp(millis) 
+{
+var date = new Date();
+var curDate = null;
+
+do { curDate = new Date(); } 
+while(curDate-date < millis);
+} 
+
+
+
+function showValue()
+{
+alert (document.getElementById('newSkill').value);
+}
+
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+
+
+
+function changeColor2(id, nCount, finalColor)
+{
+
+var Randint=1;
+
+if (nCount > 0)
+{
+setColor(id, newColor);
+
+if (newColor=='red')
+{
+newColor='orange';
+}
+else if (newColor=='orange')
+{
+newColor='yellow';
+}
+else if (newColor=='yellow')
+{
+newColor='green';
+}
+else if (newColor=='green')
+{
+newColor='blue';
+}
+else if (newColor=='blue')
+{
+newColor='purple';
+}
+else if (newColor=='purple')
+{
+newColor='red';
+}
+
+setTimeout(function(){changeColor2(id, nCount-1, finalColor);},100);
+
+
+
+}
+else
+
+{
+
+if (doRandom!=0)
+{
+Randint=getRandomInt (1, 5);
+
+
+switch (Randint)
+
+{
+case 1:
+finalColor='red';
+break;
+case 2:
+finalColor='orange';
+break;
+case 3:
+finalColor='yellow';
+break;
+case 4:
+finalColor='green';
+break;
+case 5:
+finalColor='blue';
+break;
+
+
+}
+}
+
+setColor(id, finalColor);
+switch (finalColor)
+
+{
+case 'red':
+document.getElementById('audiotag_red').play();
+break;
+case 'orange':
+document.getElementById('audiotag_orange').play();
+break;
+case 'yellow':
+document.getElementById('audiotag_yellow').play();
+break;
+case 'green':
+document.getElementById('audiotag_green').play();
+break;
+case 'blue':
+document.getElementById('audiotag_blue').play();
+break;
+
+
+}
+
+}
+
+
+}
+</script>
+
+<body bgcolor=black>
+<center>
+
+<select name="newSkill" id="newSkill" onChange="handleSelect()"  style="font-size: 40px">
+<option value="orange">Abby</option>
+<option value="green">Aili</option>
+<option value="yellow">Amelia</option>
+<option value="yellow">Anna</option>
+<option value="green">Autumn</option>
+<option value="blue">Ava</option>
+<option value="yellow">Charlotte</option>
+<option value="green">Corinne</option>
+<option value="red">Daria</option>
+<option value="blue">Elisabeth E.</option>
+<option value="blue">Elizabeth C.</option>
+<option value="orange">Isabella</option>
+<option value="red">Katelyn</option>
+<option value="blue">Kathryn</option>
+<option value="green">Lauren</option>
+<option value="blue">Lindsay</option>
+<option value="red">Lydia</option>
+<option value="green">Maya</option>
+<option value="yellow">Natalie</option>
+<option value="yellow">Rachel</option>
+<option value="red">Riley</option>
+<option value="red">Samantha H.</option>
+<option value="orange">Samantha T.</option>
+<option value="orange">Sophie</option>
+<option value="orange">Tess</option>
+</select>
+
+
+<table>
+<tr>
+<td><img id="slot1" src="Blank.png" width=100 height=100 onclick="document.getElementById('slot1').src = 'Blank.png';nextBox=1;doRandom=-1;"/></td>
+<td><img id="slot2" src="Blank.png" width=100 height=100 onclick="document.getElementById('slot2').src = 'Blank.png';nextBox=2;"/></td>
+<td><img id="slot3" src="Blank.png" width=100 height=100 onclick="document.getElementById('slot3').src = 'Blank.png';nextBox=3;"/></td>
+<td><img id="slot4" src="Blank.png" width=100 height=100 onclick="document.getElementById('slot4').src = 'Blank.png';nextBox=4;"/></td>
+</tr>
+</table>
+
+<div id="myid" style="background-color:#000000; width:300px; height:100px; valign=center">
+<!--<input id="colorButton" type="button" onclick="changeColor2('myid', 25, document.getElementById('newSkill').value)" value="Go" disabled>-->
+</div>
+<audio id="audiotag_beeps" src="beeps.wav" preload="auto"></audio>
+<audio id="audiotag_red" src="red.mp3" preload="auto"></audio>
+<audio id="audiotag_orange" src="orange.mp3" preload="auto"></audio>
+<audio id="audiotag_yellow" src="yellow.mp3" preload="auto"></audio>
+<audio id="audiotag_green" src="green.mp3" preload="auto"></audio>
+<audio id="audiotag_blue" src="blue.mp3" preload="auto"></audio>
+<!--<input id="soundButton" type="button" onclick="document.getElementById('audiotag1').play();" value="Play Sound" >-->
+<table>
+<tr>
+<td><img src=One.png height=100 width=100 onclick="changeTextSimpleI('box', '1')" />
+</td>
+<td><img src=Two.png height=100 width=100 onclick="changeTextSimpleI('box', '2')" />
+</td>
+<td><img src=Three.png height=100 width=100 onclick="changeTextSimpleI('box', '3')" />
+</td>
+</tr>
+<tr>
+<td><img src=Four.png height=100 width=100 onclick="changeTextSimpleI('box', '4')" />
+</td>
+<td><img src=Five.png height=100 width=100 onclick="changeTextSimpleI('box', '5')" />
+</td>
+<td><img src=Six.png height=100 width=100 onclick="changeTextSimpleI('box', '6')" />
+</td>
+</tr>
+<tr>
+<td><img src=Seven.png height=100 width=100 onclick="changeTextSimpleI('box', '7')" />
+</td>
+<td><img src=Eight.png height=100 width=100 onclick="changeTextSimpleI('box', '8')" />
+</td>
+<td><img src=Nine.png height=100 width=100 onclick="changeTextSimpleI('box', '9')" />
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

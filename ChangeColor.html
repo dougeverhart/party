@@ -1,0 +1,77 @@
+<script>
+function changeColor(id)
+{
+
+  document.getElementById(id).style.color = document.getElementById('newSkill').value; // forecolor
+  document.getElementById(id).style.backgroundColor = document.getElementById('newSkill').value; // backcolor
+}
+
+function setColor(id, thecolor)
+{
+  document.getElementById(id).style.color = thecolor; // forecolor
+  document.getElementById(id).style.backgroundColor = thecolor; // backcolor
+
+}
+
+function pausecomp(millis) 
+{
+var date = new Date();
+var curDate = null;
+
+do { curDate = new Date(); } 
+while(curDate-date < millis);
+} 
+
+function changeColor2(id, nCount, newColor, finalColor)
+{
+
+alert('starting');
+
+if (nCount > 0)
+{
+setColor(id, newColor)
+if (newColor='yellow')
+{
+newColor='green';
+}
+else
+{
+newColor='yellow'
+}
+
+
+setTimeout(function(){changeColor2(id, nCount-1, newColor, finalColor);},1000);
+
+}
+else
+
+{
+setColor(id, finalColor)
+
+}
+
+
+}
+
+function showValue()
+{
+alert (document.getElementById('newSkill').value);
+}
+</script>
+
+<select name="newSkill" id="newSkill">
+    <option value="blue">Elisabeth</option>
+    <option value="red">Charlotte</option>
+    <option value="green">Rachel</option>
+</select>
+
+Code: <input type="text" name="lname"><br>
+
+<div width=300 height=300 id="myid">Hello There !!
+<br>
+<br></div>
+
+<input type="button" onclick="changeColor('myid')" value="Show Color">
+<input type="button" onclick="changeColor2('myid', 10, 'yellow', document.getElementById('newSkill').value)" value="Show Color2">
+
+
